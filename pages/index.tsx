@@ -8,21 +8,26 @@ import {
 import { ApexCharts } from "./charts/ApexCharts";
 
 const Covid19Prefectures: React.VFC = () => {
-  const prefectures = useCovid19PrefecturesQuery().getValue();
-  return (
-    <Mui.Grid container spacing={4}>
-      {prefectures ? <ApexCharts /> : <></>}
-    </Mui.Grid>
-  );
+  const prefectures = useCovid19PrefecturesQuery();
+  switch (prefectures.state) {
+    case "hasValue":
+      return (
+        <Mui.Grid container spacing={4}>
+          <ApexCharts />
+        </Mui.Grid>
+      );
+    case "loading":
+      return <Mui.CircularProgress />;
+    default:
+      return <>error...</>;
+  }
 };
 
 const Index: React.VFC = () => {
   const content = (
     <RecoilRoot>
-      <Suspense fallback={<p>Loading...</p>}>
-        <Mui.Typography variant="h6">COVID19 date</Mui.Typography>
-        <Covid19Prefectures />
-      </Suspense>
+      <Mui.Typography variant="h6">COVID19 date</Mui.Typography>
+      <Covid19Prefectures />
     </RecoilRoot>
   );
   return content;
