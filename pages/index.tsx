@@ -1,34 +1,29 @@
-import React from "react";
-import Link from "next/link";
+import React, { Suspense } from "react";
 import * as Mui from "@material-ui/core";
+import { RecoilRoot } from "recoil";
+import {
+  useCovid19PrefecturesQuery,
+  useCovid19StatisticsQuery
+} from "../entities/covid19/query";
+import { ApexCharts } from "./charts/ApexCharts";
 
-type Props = {};
+const Covid19Prefectures: React.VFC = () => {
+  const prefectures = useCovid19PrefecturesQuery().getValue();
+  return (
+    <Mui.Grid container spacing={4}>
+      {prefectures ? <ApexCharts /> : <></>}
+    </Mui.Grid>
+  );
+};
 
-const Index: React.VFC<Props> = (props) => {
+const Index: React.VFC = () => {
   const content = (
-    <Mui.Container>
-      <Mui.Box>
-        <Mui.Typography variant="h6">TOP</Mui.Typography>
-      </Mui.Box>
-      <Mui.Box>
-        <Mui.List>
-          <Mui.ListItem>
-            <Mui.ListItemText>
-              <Link href="./TestForm">
-                <Mui.Link rel="noopener">test form</Mui.Link>
-              </Link>
-            </Mui.ListItemText>
-          </Mui.ListItem>
-          <Mui.ListItem>
-            <Mui.ListItemText>
-              <Link href="./Covid19">
-                <Mui.Link rel="noopener">covid19 date</Mui.Link>
-              </Link>
-            </Mui.ListItemText>
-          </Mui.ListItem>
-        </Mui.List>
-      </Mui.Box>
-    </Mui.Container>
+    <RecoilRoot>
+      <Suspense fallback={<p>Loading...</p>}>
+        <Mui.Typography variant="h6">COVID19 date</Mui.Typography>
+        <Covid19Prefectures />
+      </Suspense>
+    </RecoilRoot>
   );
   return content;
 };
