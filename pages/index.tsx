@@ -1,11 +1,12 @@
-import React, { Suspense } from "react";
+import React from "react";
 import * as Mui from "@material-ui/core";
 import { RecoilRoot } from "recoil";
-import {
-  useCovid19PrefecturesQuery,
-  useCovid19StatisticsQuery
-} from "../entities/covid19/query";
+import { useCovid19PrefecturesQuery } from "../entities/covid19/query";
 import { ApexCharts } from "./charts/ApexCharts";
+import { Recharts } from "./charts/Recharts";
+import { Chartjs } from "./charts/Chartjs";
+import { GoogleCharts } from "./charts/GoogleCharts";
+import { Nivo } from "./charts/Nivo";
 
 const Covid19Prefectures: React.VFC = () => {
   const prefectures = useCovid19PrefecturesQuery();
@@ -14,6 +15,10 @@ const Covid19Prefectures: React.VFC = () => {
       return (
         <Mui.Grid container spacing={4}>
           <ApexCharts />
+          <GoogleCharts />
+          {/* <Nivo /> */}
+          <Chartjs />
+          <Recharts />
         </Mui.Grid>
       );
     case "loading":

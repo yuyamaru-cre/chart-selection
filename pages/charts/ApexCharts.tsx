@@ -1,9 +1,6 @@
 import React from "react";
 import * as Mui from "@material-ui/core";
-import {
-  useCovid19PrefecturesQuery,
-  useCovid19StatisticsQuery
-} from "../../entities/covid19/query";
+import { useCovid19PrefecturesQuery } from "../../entities/covid19/query";
 // import Chart from "react-apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
@@ -16,18 +13,8 @@ const initOptions = {
     bar: {
       horizontal: true
     }
-  },
-  // series: {},
-  xaxis: {
-    // categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
   }
 };
-const initSeries = [
-  {
-    name: "感染者数"
-    // data: [30, 40, 45, 50, 49, 60, 70, 91]
-  }
-];
 
 export const ApexCharts: React.VFC = () => {
   const prefectures = useCovid19PrefecturesQuery().getValue();
@@ -41,7 +28,7 @@ export const ApexCharts: React.VFC = () => {
 
   const series = [
     {
-      ...initSeries,
+      name: "件数",
       data: prefectures.map((pre: any) => pre.cases)
     }
   ];
@@ -50,7 +37,9 @@ export const ApexCharts: React.VFC = () => {
     <Mui.Grid item xs={12}>
       <Mui.Paper style={{ padding: 10 }}>
         <Mui.Typography component="h5" variant="subtitle1">
-          ApexCharts
+          <a target="_blank" href="https://apexcharts.com/">
+            ApexCharts
+          </a>
         </Mui.Typography>
         <Chart options={options} series={series} type="bar" height={1200} />
       </Mui.Paper>
