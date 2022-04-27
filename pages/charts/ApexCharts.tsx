@@ -4,7 +4,9 @@ import {
   useCovid19PrefecturesQuery,
   useCovid19StatisticsQuery
 } from "../../entities/covid19/query";
-import Chart from "react-apexcharts";
+// import Chart from "react-apexcharts";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const initOptions = {
   chart: {
@@ -15,7 +17,7 @@ const initOptions = {
       horizontal: true
     }
   },
-  series: {},
+  // series: {},
   xaxis: {
     // categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
   }
