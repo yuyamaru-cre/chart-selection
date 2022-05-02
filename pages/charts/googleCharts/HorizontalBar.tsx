@@ -1,6 +1,6 @@
 import React from "react";
 import * as Mui from "@material-ui/core";
-import { useCovid19PrefecturesQuery } from "../../entities/covid19/query";
+import { useCovid19PrefecturesQuery } from "../../../entities/covid19/query";
 import { Chart } from "react-google-charts";
 
 const options = {
@@ -13,7 +13,7 @@ const options = {
   // legend: { position: "none" }
 };
 
-export const GoogleCharts: React.VFC = () => {
+export const GoogleChartsHorizontalBar: React.VFC = () => {
   const prefectures = useCovid19PrefecturesQuery().getValue();
 
   const data = [["都道府県", "件数"]];

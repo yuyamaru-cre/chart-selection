@@ -1,6 +1,6 @@
 import React from "react";
 import * as Mui from "@material-ui/core";
-import { useCovid19PrefecturesQuery } from "../../entities/covid19/query";
+import { useCovid19PrefecturesQuery } from "../../../entities/covid19/query";
 // import Chart from "react-apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
@@ -16,7 +16,7 @@ const initOptions = {
   }
 };
 
-export const ApexCharts: React.VFC = () => {
+export const ApexChartsHorizontalBar: React.VFC = () => {
   const prefectures = useCovid19PrefecturesQuery().getValue();
 
   const options = {

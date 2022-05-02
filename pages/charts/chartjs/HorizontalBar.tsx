@@ -1,6 +1,6 @@
 import React from "react";
 import * as Mui from "@material-ui/core";
-import { useCovid19PrefecturesQuery } from "../../entities/covid19/query";
+import { useCovid19PrefecturesQuery } from "../../../entities/covid19/query";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -40,7 +40,7 @@ const options = {
   }
 };
 
-export const Chartjs: React.VFC = () => {
+export const ChartjsHorizontalBar: React.VFC = () => {
   const prefectures = useCovid19PrefecturesQuery().getValue();
 
   const data = {

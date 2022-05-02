@@ -2,11 +2,9 @@ import React from "react";
 import * as Mui from "@material-ui/core";
 import { RecoilRoot } from "recoil";
 import { useCovid19PrefecturesQuery } from "../entities/covid19/query";
-import { ApexCharts } from "./charts/ApexCharts";
-import { Recharts } from "./charts/Recharts";
-import { Chartjs } from "./charts/Chartjs";
-import { GoogleCharts } from "./charts/GoogleCharts";
-import { Nivo } from "./charts/Nivo";
+import { ApexChartsHorizontalBar } from "./charts/apexCharts/HorizontalBar";
+import { ChartjsHorizontalBar } from "./charts/chartjs/HorizontalBar";
+import { GoogleChartsHorizontalBar } from "./charts/googleCharts/HorizontalBar";
 
 const Covid19Prefectures: React.VFC = () => {
   const prefectures = useCovid19PrefecturesQuery();
@@ -14,11 +12,9 @@ const Covid19Prefectures: React.VFC = () => {
     case "hasValue":
       return (
         <Mui.Grid container spacing={4}>
-          <ApexCharts />
-          <GoogleCharts />
-          {/* <Nivo /> */}
-          <Chartjs />
-          <Recharts />
+          <ApexChartsHorizontalBar />
+          <GoogleChartsHorizontalBar />
+          <ChartjsHorizontalBar />
         </Mui.Grid>
       );
     case "loading":
