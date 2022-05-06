@@ -2,15 +2,28 @@ import React from "react";
 import * as Mui from "@material-ui/core";
 import { RecoilRoot } from "recoil";
 import { useCovid19PrefecturesQuery } from "../entities/covid19/query";
+// 横棒グラフ
 import { ApexChartsHorizontalBar } from "./charts/apexCharts/HorizontalBar";
 import { ChartjsHorizontalBar } from "./charts/chartjs/HorizontalBar";
 import { GoogleChartsHorizontalBar } from "./charts/googleCharts/HorizontalBar";
+// 折れ線　グラフ
+import { ApexChartsLine } from "./charts/apexCharts/Line";
+// 円グラフ
+import { ApexChartsPie } from "./charts/apexCharts/Pie";
 
 const Line: React.VFC = () => {
-  return <Mui.Grid container spacing={4}></Mui.Grid>;
+  return (
+    <Mui.Grid container spacing={4}>
+      <ApexChartsLine />
+    </Mui.Grid>
+  );
 };
 const Pie: React.VFC = () => {
-  return <Mui.Grid container spacing={4}></Mui.Grid>;
+  return (
+    <Mui.Grid container spacing={4}>
+      <ApexChartsPie />
+    </Mui.Grid>
+  );
 };
 const HorizontalBar: React.VFC = () => {
   return (
@@ -28,12 +41,12 @@ const Covid19Prefectures: React.VFC = () => {
     case "hasValue":
       return (
         <>
-          横棒グラフ
+          {/* 横棒グラフ */}
           <HorizontalBar />
-          円グラフ
-          <Pie />
-          折れ線グラフ
+          {/* 折れ線グラフ */}
           <Line />
+          {/* 円グラフ */}
+          {/* <Pie /> */}
         </>
       );
     case "loading":

@@ -11,7 +11,7 @@ const initOptions = {
   }
 };
 
-export const ApexChartsLine: React.VFC = () => {
+export const ApexChartsPie: React.VFC = () => {
   const prefectures = useCovid19PrefecturesQuery().getValue();
 
   const options = {
@@ -36,7 +36,7 @@ export const ApexChartsLine: React.VFC = () => {
             ApexCharts
           </a>
         </Mui.Typography>
-        <Chart options={options} series={series} type="line" height={1200} />
+        <Chart options={options} series={series} type="pie" height={1200} />
       </Mui.Paper>
     </Mui.Grid>
   );
