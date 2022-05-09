@@ -21,27 +21,27 @@ import { ChartjsPie } from "./charts/chartjs/Pie";
 const Line: React.VFC = () => {
   return (
     <Mui.Grid container spacing={4}>
-      <ApexChartsLine />
+      {/* <ApexChartsLine /> */}
       <GoogleChartsLine />
-      <ChartjsLine />
+      {/* <ChartjsLine /> */}
     </Mui.Grid>
   );
 };
 const Pie: React.VFC = () => {
   return (
     <Mui.Grid container spacing={4}>
-      <ApexChartsPie />
+      {/* <ApexChartsPie /> */}
       <GoogleChartsPie />
-      <ChartjsPie />
+      {/* <ChartjsPie /> */}
     </Mui.Grid>
   );
 };
 const HorizontalBar: React.VFC = () => {
   return (
     <Mui.Grid container spacing={4}>
-      <ApexChartsHorizontalBar />
+      {/* <ApexChartsHorizontalBar /> */}
       <GoogleChartsHorizontalBar />
-      <ChartjsHorizontalBar />
+      {/* <ChartjsHorizontalBar /> */}
     </Mui.Grid>
   );
 };
