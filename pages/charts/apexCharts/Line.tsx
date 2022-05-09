@@ -19,6 +19,11 @@ export const ApexChartsLine: React.VFC = () => {
     ...initOptions,
     xaxis: {
       categories: total04.map((value: any) => value.date)
+    },
+    chart: {
+      toolbar: {
+        show: false
+      }
     }
   };
 
