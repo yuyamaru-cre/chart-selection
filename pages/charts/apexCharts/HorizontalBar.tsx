@@ -13,6 +13,9 @@ const initOptions = {
     bar: {
       horizontal: true
     }
+  },
+  dataLabels: {
+    enabled: false
   }
 };
 
