@@ -1,7 +1,10 @@
 import React from "react";
 import * as Mui from "@material-ui/core";
 import { RecoilRoot } from "recoil";
-import { useCovid19PrefecturesQuery } from "../entities/covid19/query";
+import {
+  useCovid19PrefecturesQuery,
+  useCovid19TotalQuery
+} from "../entities/covid19/query";
 // 横棒グラフ
 import { ApexChartsHorizontalBar } from "./charts/apexCharts/HorizontalBar";
 import { ChartjsHorizontalBar } from "./charts/chartjs/HorizontalBar";
@@ -51,10 +54,25 @@ const Covid19Prefectures: React.VFC = () => {
         <>
           {/* 横棒グラフ */}
           <HorizontalBar />
-          {/* 折れ線グラフ */}
-          <Line />
           {/* 円グラフ */}
           <Pie />
+        </>
+      );
+    case "loading":
+      return <Mui.CircularProgress />;
+    default:
+      return <>error...</>;
+  }
+};
+
+const Covid19Total: React.VFC = () => {
+  const total = useCovid19TotalQuery();
+  switch (total.state) {
+    case "hasValue":
+      return (
+        <>
+          {/* 折れ線グラフ */}
+          <Line />
         </>
       );
     case "loading":
@@ -69,6 +87,7 @@ const Index: React.VFC = () => {
     <RecoilRoot>
       <Mui.Typography variant="h6">COVID19 date</Mui.Typography>
       <Covid19Prefectures />
+      <Covid19Total />
     </RecoilRoot>
   );
   return content;

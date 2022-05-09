@@ -1,6 +1,6 @@
 import React from "react";
 import * as Mui from "@material-ui/core";
-import { useCovid19PrefecturesQuery } from "../../../entities/covid19/query";
+import { useCovid19TotalQuery } from "../../../entities/covid19/query";
 import { Chart } from "react-google-charts";
 
 const options = {
@@ -8,11 +8,16 @@ const options = {
 };
 
 export const GoogleChartsLine: React.VFC = () => {
-  const prefectures = useCovid19PrefecturesQuery().getValue();
+  const total = useCovid19TotalQuery().getValue();
+  const total04 = total.filter((value: any) => value.date > 20220401);
 
-  const data = [["都道府県", "件数"]];
-  prefectures.forEach((pref: any) => {
-    const lowDate = [pref.name_ja, pref.cases];
+  const data = [["日付", "症状確認中", "重症"]];
+  total04.forEach((value: any) => {
+    const lowDate = [
+      String(value.date),
+      value.symptom_confirming,
+      value.severe
+    ];
     data.push(lowDate);
   });
 

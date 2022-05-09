@@ -13,10 +13,10 @@ const covid19PrefecturesQuery = atomRewind({
   }
 });
 
-const covid19StatisticsQuery = atomRewind({
+const covid19TotalQuery = atomRewind({
   key: uuidV4(),
   default: async () => {
-    const response = await (await fetch(prefix + "statistics")).json();
+    const response = await (await fetch(prefix + "total?history=true")).json();
     console.log(response);
     return response;
   }
@@ -30,10 +30,10 @@ export const useRefetchCovid19Prefectures = () =>
     []
   );
 
-export const useRefetchCovid19Statistics = () =>
+export const useRefetchCovid19Total = () =>
   useRecoilCallback(
     ({ reset }) => () => {
-      reset(covid19StatisticsQuery);
+      reset(covid19TotalQuery);
     },
     []
   );
@@ -41,5 +41,5 @@ export const useRefetchCovid19Statistics = () =>
 export const useCovid19PrefecturesQuery = () =>
   useRecoilValueLoadable(covid19PrefecturesQuery);
 
-export const useCovid19StatisticsQuery = () =>
-  useRecoilValueLoadable(covid19StatisticsQuery);
+export const useCovid19TotalQuery = () =>
+  useRecoilValueLoadable(covid19TotalQuery);

@@ -1,6 +1,6 @@
 import React from "react";
 import * as Mui from "@material-ui/core";
-import { useCovid19PrefecturesQuery } from "../../../entities/covid19/query";
+import { useCovid19TotalQuery } from "../../../entities/covid19/query";
 // import Chart from "react-apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
@@ -12,19 +12,24 @@ const initOptions = {
 };
 
 export const ApexChartsLine: React.VFC = () => {
-  const prefectures = useCovid19PrefecturesQuery().getValue();
+  const total = useCovid19TotalQuery().getValue();
+  const total04 = total.filter((value: any) => value.date > 20220401);
 
   const options = {
     ...initOptions,
     xaxis: {
-      categories: prefectures.map((pre: any) => pre.name_ja)
+      categories: total04.map((value: any) => value.date)
     }
   };
 
   const series = [
     {
-      name: "件数",
-      data: prefectures.map((pre: any) => pre.cases)
+      name: "症状確認中",
+      data: total04.map((value: any) => value.symptom_confirming)
+    },
+    {
+      name: "重症",
+      data: total04.map((value: any) => value.severe)
     }
   ];
 
