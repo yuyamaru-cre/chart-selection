@@ -4,10 +4,16 @@ import { useCovid19PrefecturesQuery } from "../../../entities/covid19/query";
 import { Chart } from "react-google-charts";
 
 const options = {
-  title: "都道府県別感染者数"
+  title: "都道府県別感染者数",
+  hAxis: {
+    minValue: 0
+  },
+  height: 1000
+  // bar: { groupWidth: "95%" },
+  // legend: { position: "none" }
 };
 
-export const GoogleChartsLine: React.VFC = () => {
+export const GoogleChartsPie: React.VFC = () => {
   const prefectures = useCovid19PrefecturesQuery().getValue();
 
   const data = [["都道府県", "件数"]];
@@ -24,7 +30,12 @@ export const GoogleChartsLine: React.VFC = () => {
             GoogleCharts
           </a>
         </Mui.Typography>
-        <Chart chartType="Line" width="100%" data={data} options={options} />
+        <Chart
+          chartType="BarChart"
+          width="100%"
+          data={data}
+          options={options}
+        />
       </Mui.Paper>
     </Mui.Grid>
   );

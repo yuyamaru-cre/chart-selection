@@ -40,7 +40,7 @@ const options = {
   }
 };
 
-export const ChartjsLine: React.VFC = () => {
+export const ChartjsPie: React.VFC = () => {
   const prefectures = useCovid19PrefecturesQuery().getValue();
 
   const data = {

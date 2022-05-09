@@ -8,13 +8,19 @@ import { ChartjsHorizontalBar } from "./charts/chartjs/HorizontalBar";
 import { GoogleChartsHorizontalBar } from "./charts/googleCharts/HorizontalBar";
 // 折れ線　グラフ
 import { ApexChartsLine } from "./charts/apexCharts/Line";
+import { GoogleChartsLine } from "./charts/googleCharts/Line";
+import { ChartjsLine } from "./charts/chartjs/Line";
 // 円グラフ
 import { ApexChartsPie } from "./charts/apexCharts/Pie";
+import { GoogleChartsPie } from "./charts/googleCharts/Pie";
+import { ChartjsPie } from "./charts/chartjs/Pie";
 
 const Line: React.VFC = () => {
   return (
     <Mui.Grid container spacing={4}>
       <ApexChartsLine />
+      <GoogleChartsLine />
+      <ChartjsLine />
     </Mui.Grid>
   );
 };
@@ -22,6 +28,8 @@ const Pie: React.VFC = () => {
   return (
     <Mui.Grid container spacing={4}>
       <ApexChartsPie />
+      <GoogleChartsPie />
+      <ChartjsPie />
     </Mui.Grid>
   );
 };
@@ -46,7 +54,7 @@ const Covid19Prefectures: React.VFC = () => {
           {/* 折れ線グラフ */}
           <Line />
           {/* 円グラフ */}
-          {/* <Pie /> */}
+          <Pie />
         </>
       );
     case "loading":

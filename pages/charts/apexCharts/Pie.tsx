@@ -7,8 +7,22 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const initOptions = {
   chart: {
-    id: "line"
-  }
+    width: 380,
+    type: "pie"
+  },
+  responsive: [
+    {
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 200
+        },
+        legend: {
+          position: "bottom"
+        }
+      }
+    }
+  ]
 };
 
 export const ApexChartsPie: React.VFC = () => {
@@ -16,17 +30,10 @@ export const ApexChartsPie: React.VFC = () => {
 
   const options = {
     ...initOptions,
-    xaxis: {
-      categories: prefectures.map((pre: any) => pre.name_ja)
-    }
+    labels: prefectures.map((pre: any) => pre.name_ja)
   };
 
-  const series = [
-    {
-      name: "件数",
-      data: prefectures.map((pre: any) => pre.cases)
-    }
-  ];
+  const series = prefectures.map((pre: any) => pre.cases);
 
   return (
     <Mui.Grid item xs={12}>
