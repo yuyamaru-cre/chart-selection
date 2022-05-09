@@ -4,23 +4,21 @@ import { useCovid19PrefecturesQuery } from "../../../entities/covid19/query";
 import { Chart } from "react-google-charts";
 
 const options = {
-  title: "都道府県別感染者数",
-  hAxis: {
-    minValue: 0
-  },
-  height: 1000
+  title: "東京都の感染者の割合",
   // bar: { groupWidth: "95%" },
   // legend: { position: "none" }
+  pieHole: 0.4,
+  is3D: false
 };
 
 export const GoogleChartsPie: React.VFC = () => {
   const prefectures = useCovid19PrefecturesQuery().getValue();
 
-  const data = [["都道府県", "件数"]];
-  prefectures.forEach((pref: any) => {
-    const lowDate = [pref.name_ja, pref.cases];
-    data.push(lowDate);
-  });
+  const data = [
+    ["Task", "Hours per Day"],
+    ["入院", prefectures[12].hospitalize],
+    ["自宅療養", prefectures[12].discharge]
+  ];
 
   return (
     <Mui.Grid item xs={12}>
@@ -31,7 +29,7 @@ export const GoogleChartsPie: React.VFC = () => {
           </a>
         </Mui.Typography>
         <Chart
-          chartType="BarChart"
+          chartType="PieChart"
           width="100%"
           data={data}
           options={options}

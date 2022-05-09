@@ -1,25 +1,10 @@
 import React from "react";
 import * as Mui from "@material-ui/core";
 import { useCovid19PrefecturesQuery } from "../../../entities/covid19/query";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const options = {
   indexAxis: "y" as const,
@@ -44,13 +29,11 @@ export const ChartjsPie: React.VFC = () => {
   const prefectures = useCovid19PrefecturesQuery().getValue();
 
   const data = {
-    labels: prefectures.map((pre: any) => pre.name_ja),
+    labels: ["入院", "自宅療養"],
     datasets: [
       {
-        label: "件数",
-        data: prefectures.map((pre: any) => pre.cases),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)"
+        data: [prefectures[12].hospitalize, prefectures[12].discharge],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"]
       }
     ]
   };
@@ -63,7 +46,7 @@ export const ChartjsPie: React.VFC = () => {
             Chartjs
           </a>
         </Mui.Typography>
-        <Bar options={options} data={data} />
+        <Doughnut options={options} data={data} />
       </Mui.Paper>
     </Mui.Grid>
   );

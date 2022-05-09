@@ -5,24 +5,25 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend
 );
 
 const options = {
-  indexAxis: "y" as const,
   elements: {
     bar: {
       borderWidth: 1
@@ -31,7 +32,7 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "right" as const
+      position: "top" as const
     },
     title: {
       display: true,
@@ -63,7 +64,7 @@ export const ChartjsLine: React.VFC = () => {
             Chartjs
           </a>
         </Mui.Typography>
-        <Bar options={options} data={data} />
+        <Line options={options} data={data} />
       </Mui.Paper>
     </Mui.Grid>
   );

@@ -7,8 +7,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const initOptions = {
   chart: {
-    width: 380,
-    type: "pie"
+    // type: "donut"
   },
   responsive: [
     {
@@ -30,10 +29,15 @@ export const ApexChartsPie: React.VFC = () => {
 
   const options = {
     ...initOptions,
-    labels: prefectures.map((pre: any) => pre.name_ja)
+    labels: ["入院", "自宅療養"]
   };
 
-  const series = prefectures.map((pre: any) => pre.cases);
+  const series = [
+    // prefectures.reduce((sum: number, pre: any) => sum + pre.case, 0), // 感染者
+    prefectures[12].hospitalize, // 入院
+    // prefectures.reduce((sum: number, pre: any) => sum + pre.deaths, 0), // 死者
+    prefectures[12].discharge // 自宅療養
+  ];
 
   return (
     <Mui.Grid item xs={12}>
@@ -43,7 +47,7 @@ export const ApexChartsPie: React.VFC = () => {
             ApexCharts
           </a>
         </Mui.Typography>
-        <Chart options={options} series={series} type="pie" height={1200} />
+        <Chart options={options} series={series} type="donut" height={1200} />
       </Mui.Paper>
     </Mui.Grid>
   );
