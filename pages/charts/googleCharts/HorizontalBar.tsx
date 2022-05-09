@@ -8,9 +8,19 @@ const options = {
   hAxis: {
     minValue: 0
   },
-  height: 1000
-  // bar: { groupWidth: "95%" },
-  // legend: { position: "none" }
+  legend: "top",
+  is3D: false,
+  // backgroundColor: "red",
+  colors: ["red"],
+  /*
+   * 全体の高さ & 中身の高さ - 余白 で棒の太さが変わっていく
+   */
+  // 余白の調整
+  bar: { groupWidth: "80%" },
+  // 全体の高さ
+  height: "1000",
+  // 中身の高さ
+  chartArea: { height: 1000 }
 };
 
 export const GoogleChartsHorizontalBar: React.VFC = () => {
@@ -33,6 +43,7 @@ export const GoogleChartsHorizontalBar: React.VFC = () => {
         <Chart
           chartType="BarChart"
           width="100%"
+          height="100%"
           data={data}
           options={options}
         />
